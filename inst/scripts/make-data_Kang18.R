@@ -48,5 +48,6 @@ sce <- SingleCellExperiment(
     rowData = DataFrame(gene_md),
     reducedDims = SimpleList(TSNE = tsne))
 
-# save object
+# save object & remove raw data
 save(sce, file = "Kang18_8vs8.Rda")
+unlink(geo, recursive = TRUE)
