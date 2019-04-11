@@ -8,7 +8,7 @@ Kang18_8vs8 <- data.frame(
     "before and after 6h-treatment with INF-beta.",
     "Represented as a SingleCellExperiment;",
     "derived from GEO accession number GSE96583."),
-    BiocVersion = "3.8",
+    BiocVersion = "3.9",
     Genome = NA,
     SourceType = "tar.gz",
     SourceUrl = "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE96583",
