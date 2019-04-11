@@ -24,8 +24,7 @@ biocViews:
     ExperimentHub, 
     ExperimentData, 
     ExpressionData, 
-    SingleCellData, 
-    ImmunoOncology,
+    SingleCellData,
     ImmunoOncologyData,
     Homo_sapiens_Data
 VignetteBuilder: knitr
