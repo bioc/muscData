@@ -1,0 +1,16 @@
+---
+title: "Multi-sample multi-group scRNA-seq data"
+author: "Helena L. Crowell"
+date: "`r doc_date()`"
+vignette: >
+  %\VignetteIndexEntry{Multi-sample multi-group scRNA-seq data}
+  %\VignetteEngine{knitr::rmarkdown}
+output: 
+  BiocStyle::html_document
+---
+
+# session info
+
+```{r}
+sessionInfo()
+```
