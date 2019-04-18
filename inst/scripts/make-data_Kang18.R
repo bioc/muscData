@@ -28,13 +28,15 @@ untar(file.path(geo, raw_fn), exdir = geo, files = mtx_fns)
 # load cell & gene metadata
 cell_md <- read.delim(file.path(geo, "GSE96583_batch2.total.tsne.df.tsv.gz"))
 gene_md <- read.delim(file.path(geo, "GSE96583_batch2.genes.tsv.gz"),
-    header = FALSE, col.names = c("gene", "feature"))
+    header = FALSE, col.names = c("", "feature"))
 
 # load counts
 counts <- lapply(file.path(geo, mtx_fns), readMM)
 counts <- do.call("cbind", counts)
 counts <- as(counts, "dgCMatrix")
-dimnames(counts) <- lapply(list(gene_md, cell_md), rownames)
+dimnames(counts) <- list(
+    with(gene_md, paste(gene, feature, sep = ".")),
+    rownames(cell_md))
 
 # pull reduced dimensions
 cols <- c("tsne1", "tsne2")
