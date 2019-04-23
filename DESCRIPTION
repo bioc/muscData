@@ -2,7 +2,7 @@ Package: muscData
 Version: 0.99.0
 Depends: R (>= 3.5)
 Title: Multi-sample multi-group scRNA-seq data
-Description: Data package containing a collection of multi-sample multi-group scRNA-seq datasets in SingleCellExperiment Bioconductor objectt formats.
+Description: Data package containing a collection of multi-sample multi-group scRNA-seq datasets in SingleCellExperiment Bioconductor object format.
 Authors@R: person("Helena L.", "Crowell", email = "helena.crowell@uzh.ch", role = c("aut", "cre"))
 URL: https://github.com/HelenaLC/muscData
 BugReports: https://github.com/HelenaLC/muscData/issues
