@@ -1,6 +1,7 @@
 \name{Kang18_8vs8}
 \title{\code{Kang18_8vs8} dataset}
 \alias{Kang18}
+\alias{Kang18_8vs8}
 
 \description{
 10x droplet-based scRNA-seq PBMC data from 8 Lupus patients 
@@ -22,8 +23,4 @@ under accession number GSE96583.
 }
 }
 
-\references{
-Kang et al. (2019). 
-"Multiplexed droplet single-cell RNA-sequencing using natural genetic variation". 
-Nature Biotechnology, 36(1), 89–94. doi:10.1038/nbt.4042
-}
+\references{\insertRef{Kang2018}{muscData}}
