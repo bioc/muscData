@@ -28,20 +28,19 @@ untar(file.path(geo, raw_fn), exdir = geo, files = mtx_fns)
 # load cell & gene metadata
 cell_md <- read.delim(file.path(geo, "GSE96583_batch2.total.tsne.df.tsv.gz"))
 gene_md <- read.delim(file.path(geo, "GSE96583_batch2.genes.tsv.gz"),
-    header = FALSE, col.names = c("", "feature"))
+    header = FALSE, stringsAsFactors = FALSE,
+    col.names = c("ENSEMBL", "SYMBOL"))
 
 # load counts
 counts <- lapply(file.path(geo, mtx_fns), readMM)
 counts <- do.call("cbind", counts)
 counts <- as(counts, "dgCMatrix")
-dimnames(counts) <- list(
-    with(gene_md, paste(gene, feature, sep = ".")),
-    rownames(cell_md))
+rownames(counts) <- with(gene_md, uniquifyFeatureNames(ENSEMBL, SYMBOL))
 
 # pull reduced dimensions
-cols <- c("tsne1", "tsne2")
-tsne <- as.matrix(select(cell_md, cols))
-cell_md <- select(cell_md, -cols)
+k <- c("tsne1", "tsne2")
+tsne <- as.matrix(select(cell_md, k))
+cell_md <- select(cell_md, -k)
 
 # construct SCE
 sce <- SingleCellExperiment(
