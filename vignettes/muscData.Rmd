@@ -1,5 +1,7 @@
 ---
-title: "Multi-sample multi-group scRNA-seq data"
+title: |
+  | Multi-sample multi-group
+  | scRNA-seq data
 author: "Helena L. Crowell"
 date: "`r doc_date()`"
 vignette: >
@@ -7,10 +9,76 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
 output: 
   BiocStyle::html_document
+bibliography: "`r file.path(dirname(getwd()), 'inst', 'REFERENCES.bib')`"
 ---
 
-# session info
+# Overview
 
+The `muscData` package contains a set of publicly available single-cell RNA sequencing (scRNA-seq) datasets with complex experimental designs, i.e., datasets that contain multiple samples (e.g., individuals) measured across multiple experimental conditions (e.g., treatments), formatted into `SingleCellExperiment` (SCE) Bioconductor objects. Data objects are hosted through Bioconductor's ExperimentHub web resource.
+
+# Available datasets
+
+The table below gives an overview of currently available datasets, including a unique identifier (ID) that can be used to load the data (see next section), a brief description, the original data source, and a reference. Dataset descriptions may also be viewed from within R via `?ID` (e.g., `?Kang18_8vs8`).
+
+ID | Description | Availability | Reference
+---|-------------|--------------|----------
+`Kang18_8vs8` | 10x droplet-based scRNA-seq PBMC data from 8 Lupus patients before and after 6h-treatment with INF-beta (16 samples in total) | Gene Expression Ombnibus (GEO) accession [GSE96583](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE96583) | @Kang2018
+
+# Loading the data
+
+All datasets available within `muscData` may be loaded either via named functions that directly reffer to the object names, or by using the `ExperimentHub` interface. Both methods are demonstrated below.
+
+## Via accessor functions
+
+The datasets listed above may be loaded into R by their ID. All provided SCEs contain unfiltered raw counts in their `assay` slot, and any available gene and cell metadata in the `rowData` and `colData` slots, respectively. 
+
+```{r, message = FALSE}
+library(muscData)
+Kang18_8vs8()
+```
+
+## Via `ExperimentHub`
+
+Besides using an accession function as demonstrated above, we can initialize a Hub instance to search for and load available data with the `ExperimentHub` function. We can then either `query` for the `muscData` package and load the data of interest using its accession ID (1.), or `listResources` and `loadResources` that match our search term(s) of interest (2.). In the example below, we use `"PMBC"` and `"INF-beta"` to select the `Kang18_8vs8` dataset. However, note that any keyword found in the metadata listed by `query` could be used (e.g., `"Lupus"` or `"GSE96583"`).
+
+The key differences between these approaches is that `query` (1.) will search all of ExperimentHub, while `list/loadResources` (2.) facilitate data discovery within the specified package (here, `muscData`).
+
+```{r message = FALSE}
+# create Hub instance
+library(ExperimentHub)
+eh <- ExperimentHub()
+
+# 1. using query 
+(q <- query(eh, "muscData"))
+```
+
+```{r message = FALSE, results = 'hide'}
+# load data via ...
+eh[["EH2259"]] # or
+eh[[names(q)]]
+```
+
+```{r message = FALSE}
+# 2. using list&load
+listResources(eh, "muscData")
+```
+
+```{r message = FALSE, results = 'hide'}
+# load data using search terms found in `q`
+loadResources(eh, "muscData", c("PBMC", "INF-beta"))
+```
+
+# Exploring the data
+
+The `r Biocpkg("scater")` [@McCarthy2017] package provides an easy-to-use set of visualization tools for scRNA-seq data.
+
+For interactive visualization, we recommend the `r Biocpkg("iSEE")` (*interactive SummerizedExperiment Explorer*) package [@Albrecht2018], which provides a Shiny-based graphical user interface for exploration of single-cell data in `SummarizedExperiment` format (installation instructions and user guides are available [here](https://bioconductor.org/packages/release/bioc/html/iSEE.html)).
+
+When available, a great tool for interactive exploration and comparison of dimension-reduced embeddings is `r CRANpkg("sleepwalk")` [@Ovchinnikova2018].
+
+# Session info
 ```{r}
 sessionInfo()
 ```
+
+# References
