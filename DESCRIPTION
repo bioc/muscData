@@ -1,5 +1,6 @@
 Package: muscData
-Version: 0.1.0
+Version: 0.99.0
+Depends: R (>= 3.5)
 Title: Multi-sample multi-group scRNA-seq data
 Description: Data package containing a collection of multi-sample multi-group scRNA-seq datasets in SingleCellExperiment Bioconductor objectt formats.
 Authors@R: person("Helena L.", "Crowell", email = "helena.crowell@uzh.ch", role = c("aut", "cre"))
@@ -14,6 +15,7 @@ Depends:
     SingleCellExperiment,
     S4Vectors
 Imports: 
+    Rdpack,
     utils, 
     methods
 Suggests: 
@@ -28,4 +30,5 @@ biocViews:
     ImmunoOncologyData,
     Homo_sapiens_Data
 VignetteBuilder: knitr
+RdMacros: Rdpack
 RoxygenNote: 6.1.1
