@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
 output: 
   BiocStyle::html_document
-bibliography: "`r file.path(dirname(getwd()), 'inst', 'REFERENCES.bib')`"
+bibliography: refs.bib
 ---
 
 # Overview
@@ -40,32 +40,40 @@ Kang18_8vs8()
 
 ## Via `ExperimentHub`
 
-Besides using an accession function as demonstrated above, we can initialize a Hub instance to search for and load available data with the `ExperimentHub` function. We can then either `query` for the `muscData` package and load the data of interest using its accession ID (1.), or `listResources` and `loadResources` that match our search term(s) of interest (2.). In the example below, we use `"PMBC"` and `"INF-beta"` to select the `Kang18_8vs8` dataset. However, note that any keyword found in the metadata listed by `query` could be used (e.g., `"Lupus"` or `"GSE96583"`).
+Besides using an accession function as demonstrated above, we can browse ExperimentHub records (using `query`) or package specific records (using `listResources`), and then load the data of interest. The key differences between these approaches is that `query` will search all of ExperimentHub, while `listResources` facilitate data discovery within the specified package (here, `muscData`).
 
-The key differences between these approaches is that `query` (1.) will search all of ExperimentHub, while `list/loadResources` (2.) facilitate data discovery within the specified package (here, `muscData`).
+### Using `query`
+
+We first initialize a Hub instance to search for and load available data with the `ExperimentHub` function, and store the complete list of >2000 records in a variable `eh`. Using `query`, we then identify any records made available by `muscData`, as well as their accession IDs (EH1234). Finally, we can load the data into R via `eh[[id]]`.
 
 ```{r message = FALSE}
 # create Hub instance
 library(ExperimentHub)
 eh <- ExperimentHub()
-
-# 1. using query 
 (q <- query(eh, "muscData"))
 ```
 
 ```{r message = FALSE, results = 'hide'}
-# load data via ...
-eh[["EH2259"]] # or
-eh[[names(q)]]
+# load data via accession ID
+eh[["EH2259"]]
 ```
 
+### Using `list/loadResources`
+
+Alternatively, available records may be viewed via `listResources`. To then load a specific dataset or subset thereof using `loadResources`, we require a character vector of metadata search terms to filter by.
+
+Available metadata can accessed from the ExperimentHub records found by `query` via `mcols()`, or viewed using the accessors shown above with option `metadata = TRUE`. In the example below, we use `"PMBC"` and `"INF-beta"` to select the `Kang18_8vs8` dataset. However, note that any metadata keyword(s) that uniquely identify the data of interest could be used (e.g., `"Lupus"` or `"GSE96583"`).
+
 ```{r message = FALSE}
-# 2. using list&load
 listResources(eh, "muscData")
 ```
 
 ```{r message = FALSE, results = 'hide'}
-# load data using search terms found in `q`
+# view metadata
+mcols(q)
+Kang18_8vs8(metadata = TRUE)
+
+# load data using metadata search terms
 loadResources(eh, "muscData", c("PBMC", "INF-beta"))
 ```
 
