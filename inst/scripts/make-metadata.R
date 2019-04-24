@@ -22,7 +22,7 @@ Kang18_8vs8 <- data.frame(
     DispatchClass = "Rda",
     RDataPath = "muscData/Kang18_8vs8.Rda")
 
-Sala2019_2vs2 <- data.frame(
+Sala19_2vs2 <- data.frame(
     stringsAsFactors = FALSE,
     Title = "Sala19_2vs2",
     Description = paste(
@@ -46,5 +46,5 @@ Sala2019_2vs2 <- data.frame(
     RDataPath = "muscData/Sala19_2vs2.Rda")
 
 # write to .csv
-df <- bind_rows(lapply(ids, get))
+df <- do.call("rbind", lapply(ids, get))
 write.csv(df, file = "../extdata/metadata.csv", row.names = FALSE)
