@@ -23,7 +23,6 @@ The table below gives an overview of currently available datasets, including a u
 ID | Description | Availability | Reference
 ---|-------------|--------------|----------
 `Kang18_8vs8` | 10x droplet-based scRNA-seq PBMC data from 8 Lupus patients before and after 6h-treatment with INF-beta (16 samples in total) | Gene Expression Ombnibus (GEO) accession [GSE96583](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE96583) | @Kang2018
-`Sala19_2vs2` | 10x scRNA-seq data from chimeric mice embryos in which Tal1-knockout (KO) embryonic stem cells were injected into a wild-type (WT) blastocyst (2 samples per group). | [Cancer Research UK](https://content.cruk.cam.ac.uk/jmlab/chimera_tal1_data) | @Sala2019
 
 # Loading the data
 
