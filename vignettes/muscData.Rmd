@@ -23,6 +23,7 @@ The table below gives an overview of currently available datasets, including a u
 ID | Description | Availability | Reference
 ---|-------------|--------------|----------
 `Kang18_8vs8` | 10x droplet-based scRNA-seq PBMC data from 8 Lupus patients before and after 6h-treatment with INF-beta (16 samples in total) | Gene Expression Ombnibus (GEO) accession [GSE96583](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE96583) | @Kang2018
+`Crowell19_4vs4` | Single-nuclei RNA-seq data of 8 CD-1 male mice, split into 2 groups with 4 animals each: vehicle and peripherally lipopolysaccharaide (LPS) treated mice | Figshare [DOI:10.6084/m9.figshare.8976473.v1](https://doi.org/10.6084/m9.figshare.8976473.v1) | @Crowell2019-muscat
 
 # Loading the data
 
