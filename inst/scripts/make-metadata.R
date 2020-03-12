@@ -28,7 +28,7 @@ Crowell19_4vs4 <- data.frame(
         "split into 2 groups with 4 animals each: vehicle and",
         "peripherally lipopolysaccharaide (LPS) treated mice;",
         "derive from Figshare DOI:10.6084/m9.figshare.8976473.v1."),
-    BiocVersion = "3.10",
+    BiocVersion = "3.11",
     Genome = NA,
     SourceType = "Zip",
     SourceUrl = "https://doi.org/10.6084/m9.figshare.8976473.v1",
