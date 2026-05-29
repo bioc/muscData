@@ -38,3 +38,4 @@ biocViews:
     SingleCellData
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
+Config/Bioconductor/UnsupportedPlatforms: windows
